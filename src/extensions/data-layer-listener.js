@@ -1,7 +1,8 @@
 // Define a custom Array constructor function
 function TealiumArray(newArray) {
   var _execute = function (useArgs) {
-    if (utag && utag.link) {
+    // console.log(utag)
+    if (typeof utag !== 'undefined' && utag.link) {
       if (Object.prototype.hasOwnProperty.call(useArgs, 'event') 
         && typeof useArgs.event === 'string' 
         && useArgs.event.toLowerCase() === 'pageview'
@@ -12,20 +13,24 @@ function TealiumArray(newArray) {
       }
     }
   }
+
+  var _iterateArray = function (useArray) {
+    for (var index = 0; index < useArray.length; index++) {
+      var arrayElement = useArray[index];
+      _execute(arrayElement);
+    }
+  }
+
   // Create a new array instance
   var array = Array.prototype.slice.call(newArray);
-  for (var index = 0; index < array.length; index++) {
-    var arrayElement = array[index];
-    var useArgs = Array.prototype.slice.call(arrayElement);
-    _execute(useArgs);
-  }
+  _iterateArray(array);
   // Define custom push method using the prototype property
   array.push = function() {
     var args = Array.prototype.slice.call(arguments);
     // Call the default push method to add new elements to the array
     Array.prototype.push.apply(this, args);
     var useArgs = Array.prototype.slice.call(arguments);
-    _execute(useArgs);
+    _iterateArray(useArgs);
   }
 
   // Define custom pop method using the prototype property
@@ -39,5 +44,8 @@ function TealiumArray(newArray) {
   return array;
 }
 
-// Create a new instance of the custom Array constructor function
-window.dataLayer = new TealiumArray(window.dataLayer || []);
+// TODO: review page view event
+// event: "gtm.historyChange-v2"
+
+// Remove this line for production
+module.exports = TealiumArray

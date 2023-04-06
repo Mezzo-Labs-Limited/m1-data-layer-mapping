@@ -6,6 +6,10 @@ Installation
 
 ```
 <script>
+
+// Create a new instance of the custom Array constructor function
+window.dataLayer = new TealiumArray(window.dataLayer || []);
+
 window.m1DataLayer = window.m1DataLayer || {
   page: {
     emailToken: null,

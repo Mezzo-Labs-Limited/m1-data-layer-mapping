@@ -1,0 +1,22 @@
+{
+  "name": "m1-data-layer-mapping",
+  "version": "1.0.0",
+  "description": "M1 dataLayer guide",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mezzo-Labs-Limited/m1-data-layer-mapping.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mezzo-Labs-Limited/m1-data-layer-mapping/issues"
+  },
+  "homepage": "https://github.com/Mezzo-Labs-Limited/m1-data-layer-mapping#readme",
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
+}

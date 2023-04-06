@@ -1,8 +1,15 @@
 # m1-data-layer-mapping
 This is data layer integration guide for developers
 
-Installation
+Installing project and running project
 ---
+Run `npm install` first. To run unit test, please run `npm run test`.
+
+
+Installation on the site
+---
+TBC - work in progress...
+
 
 ```
 <script>

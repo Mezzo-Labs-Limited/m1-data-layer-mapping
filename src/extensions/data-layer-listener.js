@@ -1,7 +1,6 @@
 // Define a custom Array constructor function
-function TealiumArray(newArray) {
+function TealiumArray(initialDataLayer) {
   var _execute = function (useArgs) {
-    // console.log(utag)
     if (typeof utag !== 'undefined' && utag.link) {
       if (Object.prototype.hasOwnProperty.call(useArgs, 'event') 
         && typeof useArgs.event === 'string' 
@@ -22,10 +21,12 @@ function TealiumArray(newArray) {
   }
 
   // Create a new array instance
-  var array = Array.prototype.slice.call(newArray);
-  _iterateArray(array);
+  var _dataLayer = Array.prototype.slice.call(initialDataLayer);
+  // dataLayer may not be emty, make sure data gets reported
+  _iterateArray(_dataLayer);
+
   // Define custom push method using the prototype property
-  array.push = function() {
+  _dataLayer.push = function() {
     var args = Array.prototype.slice.call(arguments);
     // Call the default push method to add new elements to the array
     Array.prototype.push.apply(this, args);
@@ -34,15 +35,18 @@ function TealiumArray(newArray) {
   }
 
   // Define custom pop method using the prototype property
-  array.pop = function() {
+  _dataLayer.pop = function() {
     // Call the default pop method to remove the last element from the array
     var poppedElement = Array.prototype.pop.apply(this);
     return poppedElement;
   }
 
   // Return the custom array instance
-  return array;
+  return _dataLayer;
 }
 
-// Remove this line for production
-module.exports = TealiumArray
+window.dataLayer = new TealiumArray(window.dataLayer || []);
+
+if (typeof module !== 'undefined') {
+  module.exports = TealiumArray
+}

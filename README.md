@@ -27,9 +27,9 @@ dataLayer.push({
 ### Object description
 ```
 interface PageViewObject {
-  event: 'Pageview' | "historyChange"
-  emailHash: string | "null"
-  emailToken: string | "null"
+  event: 'Pageview' | 'historyChange'
+  emailHash: string | 'null'
+  emailToken: string | 'null'
   pagePath: string
 }
 

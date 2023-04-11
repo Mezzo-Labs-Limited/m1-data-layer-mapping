@@ -5,7 +5,7 @@ function TealiumArray(newArray) {
     if (typeof utag !== 'undefined' && utag.link) {
       if (Object.prototype.hasOwnProperty.call(useArgs, 'event') 
         && typeof useArgs.event === 'string' 
-        && useArgs.event.toLowerCase() === 'pageview'
+        && useArgs.event.match(/(pageview)|(historychange)/gi) !== null
       ) {
         utag.view(useArgs);
       } else {
@@ -43,9 +43,6 @@ function TealiumArray(newArray) {
   // Return the custom array instance
   return array;
 }
-
-// TODO: review page view event
-// event: "gtm.historyChange-v2"
 
 // Remove this line for production
 module.exports = TealiumArray

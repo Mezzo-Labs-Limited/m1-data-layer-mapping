@@ -51,4 +51,16 @@ describe("TealiumArray", function() {
     expect(m1DataLayer.length).toBe(1);
     expect(utag.view).toHaveBeenCalledWith(event);
   });
+
+  it("should execute call on utag for page view functions - when executed on SPA", () => {
+    jest.clearAllMocks();
+    const m1DataLayer = new TealiumArray([]);
+    const event = {
+      event: 'gtm.historyChange-v2',
+      data: 1
+    }
+    m1DataLayer.push(event);
+    expect(m1DataLayer.length).toBe(1);
+    expect(utag.view).toHaveBeenCalledWith(event);
+  });
 });

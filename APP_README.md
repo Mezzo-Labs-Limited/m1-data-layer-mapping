@@ -1,9 +1,8 @@
-# App: Data Layer Requirements
+# M1 Use Cases Enablement (Phase 1) –  App: Data Layer Requirements
 This document will focus on the creation of a data layer object (within screens on the native app), as well as the declaration of variables to sit inside that data layer object.
 
 ## Design
 Within the Tealium native app initialisation script (i.e. the already implemented Tracking Helper Class, like shown below), we should declare the data layer variable key-value pairs to be collected.
-
 
 
 ```swift

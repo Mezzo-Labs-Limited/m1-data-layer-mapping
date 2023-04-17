@@ -4,7 +4,7 @@ function TealiumArray(initialDataLayer) {
     if (typeof utag !== 'undefined' && utag.link) {
       if (Object.prototype.hasOwnProperty.call(useArgs, 'event') 
         && typeof useArgs.event === 'string' 
-        && useArgs.event.match(/(pageview)|(historychange)/gi) !== null
+        && useArgs.event.match(/(pageview)/gi) !== null
       ) {
         utag.view(useArgs);
       } else {

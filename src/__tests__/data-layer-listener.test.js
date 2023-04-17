@@ -56,7 +56,7 @@ describe("TealiumArray", function() {
     jest.clearAllMocks();
     const m1DataLayer = new TealiumArray([]);
     const event = {
-      event: 'gtm.historyChange-v2',
+      event: 'Pageview',
       data: 1
     }
     m1DataLayer.push(event);

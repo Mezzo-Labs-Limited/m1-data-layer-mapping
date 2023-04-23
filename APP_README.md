@@ -1,4 +1,4 @@
-# M1 Use Cases Enablement (Phase 1) –  App: Data Layer Requirements
+# App: Data Layer Requirements - React Native
 This document will focus on the creation of a data layer object (within screens on the native app React Native 2.x), as well as the declaration of variables to sit inside that data layer object.
 
 ## Install

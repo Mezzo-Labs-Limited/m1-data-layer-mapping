@@ -1,4 +1,4 @@
-# M1 dataLayer mapping to Tealium - web integration guide
+# dataLayer mapping to Tealium - web integration guide
 
 ## Installation on the site
 Use the `dataLayer` push event to trigger a page view event on page load or when a page URL changes. Populate the event with `emailHash`, `emailToken` and `mobileHash` values when available. If these values are not available, populate the values with a null value (string) `"null"`.

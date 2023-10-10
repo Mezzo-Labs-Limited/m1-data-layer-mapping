@@ -17,7 +17,7 @@ global.utag = utag;
 
 // Define the unit test for the CustomArray constructor function
 describe("TealiumArray", function() {
-  it("should have store valuse in arrau", () => {
+  it("should have store values in array", () => {
     const mockDataLayer = new TealiumArray([]);
 
     mockDataLayer.push(1);
@@ -28,7 +28,7 @@ describe("TealiumArray", function() {
     expect(JSON.stringify(mockDataLayer)).toBe(JSON.stringify([1,2,3]));
   });
 
-  it("should execute call on utag for generic functions", () => {
+  it("should not execute call on utag for generic functions", () => {
     jest.clearAllMocks();
     const mockDataLayer = new TealiumArray([]);
     const event = {
@@ -37,7 +37,7 @@ describe("TealiumArray", function() {
     }
     mockDataLayer.push(event);
     expect(mockDataLayer.length).toBe(1);
-    expect(utag.link).toHaveBeenCalledWith(event);
+    expect(utag.link).not.toHaveBeenCalled();
   });
 
   it("should execute call on utag for page view functions", () => {
@@ -49,7 +49,11 @@ describe("TealiumArray", function() {
     }
     mockDataLayer.push(event);
     expect(mockDataLayer.length).toBe(1);
-    expect(utag.view).toHaveBeenCalledWith(event);
+    expect(utag.view).not.toHaveBeenCalled();
+    expect(utag.link).toHaveBeenCalledWith({
+      ...event,
+      tealium_event: 'user_enhanced',
+    });
   });
 
   it("should execute call on utag for page view functions - when executed on SPA", () => {
@@ -61,6 +65,26 @@ describe("TealiumArray", function() {
     }
     mockDataLayer.push(event);
     expect(mockDataLayer.length).toBe(1);
-    expect(utag.view).toHaveBeenCalledWith(event);
+    expect(utag.link).toHaveBeenCalledWith({
+      ...event,
+      tealium_event: 'user_enhanced',
+    });
+  });
+
+  it("should work with circular reference in data", () => {
+    jest.clearAllMocks();
+    const mockDataLayer = new TealiumArray([]);
+    const event = {
+      event: 'Pageview',
+      data: function() {
+        console.log('test')
+      }
+    }
+    mockDataLayer.push(event);
+    expect(mockDataLayer.length).toBe(1);
+    expect(utag.link).toHaveBeenCalledWith({
+      event: 'Pageview',
+      tealium_event: 'user_enhanced',
+    });
   });
 });

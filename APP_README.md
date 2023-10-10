@@ -22,11 +22,7 @@ Tealium.initialize(config);
 ```
 
 ## Implementation
-The following provides a list of the variables required (and variable syntax) for ALL SCREENS on the native app platform:
-
-#### `emailToken` - Email ID Token (Mulesoft-generated)
-This field returns the tokenized output value of the user's email address. Tokenization is done in Mulesoft. The value to populate here should be the tokenized email address value only, without any prefixes or suffixes. 
-If the user is not logged in, populate the variable with the null value (string): `"null"`.
+The following provides a list of variables required (and variable syntax) for ALL SCREENS on the native app platform:
 
 #### `emailHash` -	Email ID Hash
 This field returns the hashed output value of the user's email address, using the same hashing algorithm as the Salesforce account (SHA-256). The value to populate here should be the SHA-256 hashed email address value only, without any prefixes or suffixes. 
@@ -39,7 +35,6 @@ This field returns the hashed output value of the user's mobile phone number, us
 ```JavaScript
 let view = new TealiumView('Pageview', {
   "emailHash": "<HASHED-VALUE> or null",
-  "emailToken": "<TOKENIZED-EMAIL-VALUE> or null",
   "mobileHash", "<MOBILE-NUMBER-HASHED-VALUE> or null"
 });
 
